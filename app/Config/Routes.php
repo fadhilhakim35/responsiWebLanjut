@@ -32,11 +32,15 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'PostController::index');
+$routes->get('/admin','Templating::index');
+$routes->get('/register','Templating::register');
+$routes->post('/saveRegister', 'Templating::saveRegister');
 $routes->get('/post', function () {
     $data = [
         'title' => 'Post | Jess'
     ];
     echo view('layout/header', $data);
+    echo view('layout/navbar');
     echo view('pages/v_posts');
     echo view('layout/footer');
 });
@@ -45,6 +49,7 @@ $routes->get('/about', function () {
         'title' => 'About Me | Jess'
     ];
     echo view('layout/header', $data);
+    echo view('layout/navbar')
     echo view('pages/v_about');
     echo view('layout/footer');
 });
